@@ -1,0 +1,18 @@
+[project]
+name = "mini-proyecto-django"
+version = "0.1.0"
+description = "Mini proyecto para reforzar lo aprendido hasta el día 5 del  reto django en 30 días"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "django>=5.2.1",
+    "django-environ>=0.12.0",
+    "django-import-export>=4.3.7",
+    "gunicorn>=23.0.0",
+    "pillow>=11.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=5.2.0",
+]

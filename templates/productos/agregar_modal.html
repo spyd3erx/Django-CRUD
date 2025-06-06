@@ -1,0 +1,119 @@
+  {% extends 'base.html' %}
+
+  {% block customcss %}
+    <style>
+        .modal-content {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #0062cc, #0096ff);
+            padding: 20px;
+            border: none;
+            color: white;
+        }
+
+        .modal-title {
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+        .form-control {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 2px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #0062cc;
+            box-shadow: none;
+        }
+
+        .input-group-text {
+            border: none;
+            background: transparent;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 4;
+            color: #666;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .btn-guardar {
+            padding: 12px 20px;
+            background: linear-gradient(135deg, #0062cc, #0096ff);
+            border: none;
+            border-radius: 10px;
+            font-weight: 500;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .btn-guardar:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 98, 204, 0.3);
+        }
+
+    </style>
+  {% endblock %}
+  
+  {% block content %}
+  <div class="modal fade" id="AgregarModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Agregar Nuevo Producto</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label">Product Name</label>
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="ipod nano">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-store"></i>
+                </span>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Valor Unitario</label>
+              <div class="input-group">
+                <input type="number" class="form-control" min="1">
+                <span class="input-group-text">
+                    <i class="fa-solid fa-money-bill"></i>
+                </span>
+              </div>
+            </div>
+            <div class="mb-3">
+                <select class="form-select">
+                    {% for value, key in categorias %}
+                    <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+            </div>            
+            <button type="submit" class="btn btn-guardar text-white">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

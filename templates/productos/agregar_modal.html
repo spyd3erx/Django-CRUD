@@ -82,12 +82,12 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <form action="" method="post">
+          <form action="/add_product/" method="post">
             {% csrf_token %}
             <div class="mb-3">
               <label class="form-label">Product Name</label>
               <div class="input-group">
-                <input type="text" class="form-control" placeholder="ipod nano">
+                <input type="text" class="form-control" placeholder="ipod nano" name="product_name" required>
                 <span class="input-group-text">
                     <i class="fa-solid fa-store"></i>
                 </span>
@@ -96,16 +96,16 @@
             <div class="mb-3">
               <label class="form-label">Valor Unitario</label>
               <div class="input-group">
-                <input type="number" class="form-control" min="1">
+                <input type="number" class="form-control" min="1" name="product_price" required>
                 <span class="input-group-text">
                     <i class="fa-solid fa-money-bill"></i>
                 </span>
               </div>
             </div>
             <div class="mb-3">
-                <select class="form-select">
-                    {% for value, key in categorias %}
-                    <option value="{{ key }}">{{ value }}</option>
+                <select class="form-select" name="product_category" required>
+                    {% for key, value in categorias %}
+                    <option value="{{ value }}">{{ key }}</option>
                     {% endfor %}
                 </select>
             </div>            

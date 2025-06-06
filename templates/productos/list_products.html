@@ -8,7 +8,21 @@
 {% endblock %}
 
 {% block content %}
+
+<!--Incluir modal-->
 {% include 'productos/agregar_modal.html' %}
+<!--fin del modal-->
+
+<!--Mensaje guardado exitosamente-->
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            <strong>{{message}}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+<!--Fin del mensaje-->
+
 <div class="container py-4">
     <h2 class="mb-4">Listado de Productos</h2>
       <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#AgregarModal">
@@ -54,10 +68,19 @@
             language: {
                 url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
             },
-            pageLength: 5,
-            lengthMenu: [5, 10, 25, 50],
+            pageLength: 15,
+            lengthMenu: [15, 25, 50, 100],
             responsive: true
         });
     });
+</script>
+
+<!--Autoclose alert-->
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove(); 
+        });
+    }, 2000);    
 </script>
 {% endblock %}
